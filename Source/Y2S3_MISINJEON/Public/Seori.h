@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/CapsuleComponent.h"
+#include "Camera/CameraComponent.h"
 #include "Seori.generated.h"
 
 UCLASS()
@@ -18,6 +20,11 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	UCapsuleComponent* capsuleComponent;
+	UCameraComponent* PlayerCamera;
+
+
+	bool canInteract = false;
 
 public:	
 	// Called every frame
@@ -25,5 +32,18 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+	UFUNCTION()
+	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	UFUNCTION()
+	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	
+	UFUNCTION(BlueprintCallable)
+	bool isCanInteract() { return canInteract; };
+	UFUNCTION(BlueprintCallable)
+	void setCanInteract(bool tmp) { canInteract = tmp; };
+
+	UFUNCTION(BlueprintCallable)
+	void Interact();
 
 };

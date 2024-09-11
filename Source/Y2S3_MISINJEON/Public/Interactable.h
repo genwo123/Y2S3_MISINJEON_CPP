@@ -6,6 +6,15 @@
 #include "UObject/Interface.h"
 #include "Interactable.generated.h"
 
+UENUM(BlueprintType)
+enum class InteractType : uint8 {
+	NONE UMETA(DisplayName = "None"),
+	STATIC UMETA(DisplayNmae = "Static"),
+	ITEM UMETA(DisplayNmae = "Item"),
+	NPC UMETA(DisplayName = "NPC")
+};
+
+
 UINTERFACE(MinimalAPI)
 class UInteractable : public UInterface
 {
@@ -16,4 +25,9 @@ class UInteractable : public UInterface
 class Y2S3_MISINJEON_API IInteractable
 {
 	GENERATED_BODY()
+protected:
+	InteractType type = InteractType::NONE;
+public :
+	InteractType  virtual getType() { return type; };
+	void virtual Interact() {};
 };
