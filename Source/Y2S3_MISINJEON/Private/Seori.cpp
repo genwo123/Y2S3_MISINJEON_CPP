@@ -3,13 +3,13 @@
 
 #include "Seori.h"
 #include "Interactable.h"
+#include "NPC.h"
 
 // Sets default values
 ASeori::ASeori()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	
 	
 }
 
@@ -72,9 +72,6 @@ void ASeori::Interact() {
 		
 		AActor* target = HitResult.GetActor();
 
-		FString tmp = "";
-		target->GetName(tmp);
-		UE_LOG(LogTemp, Log, TEXT("%s"),*tmp);
 		IInteractable* targetInteract = Cast<IInteractable>(target);
 		if (targetInteract == nullptr)return;
 		
@@ -93,7 +90,8 @@ void ASeori::Interact() {
 			break;
 		case InteractType::NPC:
 			// 대화하기
-			//UE_LOG(LogTemp, Log, TEXT("TalkingNPC"));
+			ANPC* npc = Cast<ANPC>(targetInteract);
+			FVector cameraPos = npc->getCameraPos();
 			break;
 		}
 		
