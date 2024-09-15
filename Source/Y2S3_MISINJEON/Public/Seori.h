@@ -13,6 +13,9 @@ class Y2S3_MISINJEON_API ASeori : public ACharacter
 {
 	GENERATED_BODY()
 
+	const int LIMIT_HP = 5;
+	const int INVENTORY_SIZE = 5;
+
 public:
 	// Sets default values for this character's properties
 	ASeori();
@@ -22,7 +25,8 @@ protected:
 	virtual void BeginPlay() override;
 	UCapsuleComponent* capsuleComponent;
 	UCameraComponent* PlayerCamera;
-
+	int HP = 5;
+	TArray<int*> invetory; // itemKey∏¶ ¿˙¿Â
 
 	bool canInteract = false;
 
