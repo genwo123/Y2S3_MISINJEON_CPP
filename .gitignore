@@ -100,8 +100,8 @@ Content/Base_Material/**
 # Except for these files and directories
 !.gitignore
 !.ignore
-!Y1S2_MISINJEON.code-workspace
-!Y1S2_MISINJEON.uproject
+!Y2S3_MISINJEON.code-workspace
+!Y2S3_MISINJEON.uproject
 !Config/
 !Content/
 !Source/
