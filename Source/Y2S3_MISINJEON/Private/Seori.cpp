@@ -10,7 +10,9 @@ ASeori::ASeori()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	invetory.Init(0, INVENTORY_SIZE);
+	inventory.Init(0, INVENTORY_SIZE);
+
+	inventory[0] = 0;
 }
 
 // Called when the game starts or when spawned
@@ -66,7 +68,7 @@ void ASeori::Interact() {
 	FCollisionQueryParams traceParams;
 
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_Visibility, traceParams);
-	DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
+	//DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
 
 	if (HitResult.GetActor() != nullptr) {
 		

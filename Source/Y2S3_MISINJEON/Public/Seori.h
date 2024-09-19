@@ -26,7 +26,7 @@ protected:
 	UCapsuleComponent* capsuleComponent;
 	UCameraComponent* PlayerCamera;
 	int HP = 5;
-	TArray<int*> invetory; // itemKey를 저장
+	TArray<int> inventory; // itemKey를 저장
 
 	bool canInteract = false;
 
@@ -49,5 +49,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Interact();
+	UFUNCTION(BlueprintCallable)
+	TArray<int> getInventory() { return inventory; };
 
 };
