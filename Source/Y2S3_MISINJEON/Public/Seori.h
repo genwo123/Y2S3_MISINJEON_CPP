@@ -51,5 +51,7 @@ public:
 	void Interact();
 	UFUNCTION(BlueprintCallable)
 	TArray<int> getInventory() { return inventory; };
+	UFUNCTION(BlueprintCallable)
+	void setInventoryItemKey(int index, int value) { inventory[index] = value; }
 
 };

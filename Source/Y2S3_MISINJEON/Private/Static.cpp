@@ -10,6 +10,7 @@ AStatic::AStatic()
 	PrimaryActorTick.bCanEverTick = true;
 	sphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("IntreactBoundary"));
 	RootComponent = sphereComponent;
+	sphereComponent->SetSphereRadius(140.0f);
 }
 
 // Called when the game starts or when spawned
@@ -33,5 +34,4 @@ InteractType AStatic::getType() {
 void AStatic::Interact() {
 	if (interacted) return;
 	interacted = true;
-	UE_LOG(LogTemp, Log, TEXT("Interacted Static"));
 }

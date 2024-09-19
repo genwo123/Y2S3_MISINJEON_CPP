@@ -4,15 +4,14 @@
 #include "Seori.h"
 #include "Interactable.h"
 #include "NPC.h"
+#include "Item.h"
 
 // Sets default values
 ASeori::ASeori()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	inventory.Init(0, INVENTORY_SIZE);
-
-	inventory[0] = 0;
+	inventory.Init(-1, INVENTORY_SIZE);
 }
 
 // Called when the game starts or when spawned
@@ -68,7 +67,7 @@ void ASeori::Interact() {
 	FCollisionQueryParams traceParams;
 
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_Visibility, traceParams);
-	//DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
+	DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
 
 	if (HitResult.GetActor() != nullptr) {
 		
@@ -80,22 +79,31 @@ void ASeori::Interact() {
 		InteractType type = targetInteract->getType();
 		switch (type)
 		{
-		case InteractType::NONE:
+		case InteractType::NONE: {
 			//UE_LOG(LogTemp, Log, TEXT("This is Exception"));
 			break;
-		case InteractType::STATIC:
+			}
+		case InteractType::STATIC: {
 			//UE_LOG(LogTemp, Log, TEXT("Interact Static"));
 			break;
-		case InteractType::ITEM:
+			}
+		case InteractType::ITEM:{
 			// 인벤토리에 추가 or 인벤토리가 꽉찼습니다 처리
-			//UE_LOG(LogTemp, Log, TEXT("Picked Item"));
+			AItem* item = Cast<AItem>(targetInteract);
+			for (int i = 0; i < INVENTORY_SIZE; i++) {
+				if (inventory[i] != -1) continue;
+				inventory[i] = item->getItemKey();
+				break;
+			}
 			break;
-		case InteractType::NPC:
+			}
+		case InteractType::NPC:{
 			// 대화하기
 			ANPC* npc = Cast<ANPC>(targetInteract);
 			FVector cameraPos = npc->getCameraPos();
 			break;
+			}
 		}
-		
+		targetInteract->Interact();
 	}
 }

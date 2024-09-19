@@ -10,6 +10,7 @@ AItem::AItem()
 	PrimaryActorTick.bCanEverTick = true;
 	sphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("IntreactBoundary"));
 	RootComponent = sphereComponent;
+	sphereComponent->SetSphereRadius(140.0f);
 	
 }
 
@@ -28,11 +29,11 @@ void AItem::Tick(float DeltaTime)
 }
 
 InteractType AItem::getType() {
-	UE_LOG(LogTemp, Log, TEXT("Item Interact"));
+	//UE_LOG(LogTemp, Log, TEXT("Item Interact"));
 	return type;
 }
 
 void AItem::Interact() {
-
+	Destroy();
 }
 

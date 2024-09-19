@@ -13,6 +13,7 @@ ANPC::ANPC()
 	PrimaryActorTick.bCanEverTick = true;
 	sphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("IntreactBoundary"));
 	RootComponent = sphereComponent;
+	sphereComponent->SetSphereRadius(140.0f);
 	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(sphereComponent);
 	CameraPos = CreateDefaultSubobject<USceneComponent>(TEXT("CameraPos"));
