@@ -46,11 +46,9 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-<<<<<<< HEAD
 	virtual void Talk() override;
 	virtual void Listen() override;
 	
-=======
 
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	void TakeDamage(int DamageAmount);
@@ -60,7 +58,6 @@ public:
 	void UpdateHealthUI(int CurrentHP);
 
 
->>>>>>> develop
 	UFUNCTION()
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	UFUNCTION()
@@ -78,13 +75,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void setInventoryItemKey(int index, int value) { inventory[index] = value; }
 
-<<<<<<< HEAD
 
 	UFUNCTION(BlueprintCallable)
 	ConversationState getState() { return state; };
 	UFUNCTION(BlueprintCallable)
 	bool isTalking() { return Talking; };
 };
-=======
-};
->>>>>>> develop
+
