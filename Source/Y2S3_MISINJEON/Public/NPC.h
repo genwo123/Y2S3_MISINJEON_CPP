@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Interactable.h"
+#include "Conversation.h"
 #include "Components/SphereComponent.h"
 #include "Components/SceneComponent.h"
 #include "NPC.generated.h"
@@ -13,7 +14,7 @@
 class USkeletalMeshComponent;
 
 UCLASS()
-class Y2S3_MISINJEON_API ANPC : public AActor, public IInteractable
+class Y2S3_MISINJEON_API ANPC : public AActor, public IInteractable, public IConversation
 {
 	GENERATED_BODY()
 	
@@ -33,7 +34,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	bool isTalking = false;
+	bool Talking = false;
 	FRotator ResetRotate;
 	FRotator NewRotation;
 
@@ -42,6 +43,13 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual InteractType getType() override;
 	virtual void Interact() override;
+	virtual void Talk() override;
+	virtual void Listen() override;
 	void TalkStart();
 	FVector getCameraPos();
+	UFUNCTION(BlueprintCallable)
+	ConversationState getState() { return state; };
+	UFUNCTION(BlueprintCallable)
+	bool isTalking() { return Talking; };
+
 };

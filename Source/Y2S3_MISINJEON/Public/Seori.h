@@ -6,10 +6,11 @@
 #include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Conversation.h"
 #include "Seori.generated.h"
 
 UCLASS()
-class Y2S3_MISINJEON_API ASeori : public ACharacter
+class Y2S3_MISINJEON_API ASeori : public ACharacter, public IConversation
 {
 	GENERATED_BODY()
 
@@ -29,6 +30,7 @@ protected:
 	TArray<int> inventory; // itemKey∏¶ ¿˙¿Â
 
 	bool canInteract = false;
+	bool Talking = false;
 
 public:	
 	// Called every frame
@@ -36,6 +38,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void Talk() override;
+	virtual void Listen() override;
 	
 	UFUNCTION()
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
@@ -54,4 +58,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void setInventoryItemKey(int index, int value) { inventory[index] = value; }
 
+
+	UFUNCTION(BlueprintCallable)
+	ConversationState getState() { return state; };
+	UFUNCTION(BlueprintCallable)
+	bool isTalking() { return Talking; };
 };

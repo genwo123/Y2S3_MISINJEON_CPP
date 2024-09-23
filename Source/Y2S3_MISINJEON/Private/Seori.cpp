@@ -60,6 +60,7 @@ void ASeori::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 
 void ASeori::Interact() {
 	if (!canInteract) return;
+	if (Talking) return;
 	FHitResult HitResult;
 
 	FVector StartTrace = PlayerCamera->GetComponentLocation();
@@ -101,9 +102,18 @@ void ASeori::Interact() {
 			// 대화하기
 			ANPC* npc = Cast<ANPC>(targetInteract);
 			FVector cameraPos = npc->getCameraPos();
+			Talking = true;
 			break;
 			}
 		}
 		targetInteract->Interact();
 	}
+}
+
+void ASeori::Talk(){
+
+}
+
+void ASeori::Listen() {
+
 }
