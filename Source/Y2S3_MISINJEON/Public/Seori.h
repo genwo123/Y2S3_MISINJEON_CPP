@@ -26,26 +26,46 @@ protected:
 	virtual void BeginPlay() override;
 	UCapsuleComponent* capsuleComponent;
 	UCameraComponent* PlayerCamera;
-	int HP = 5;
+
+	//체력 관리 변수
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Health")
+	int HP = LIMIT_HP;
+
+
+
+	//인벤토리
 	TArray<int> inventory; // itemKey를 저장
 
+	// 상호작용 가능한 상태 플래그
 	bool canInteract = false;
 	bool Talking = false;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+<<<<<<< HEAD
 	virtual void Talk() override;
 	virtual void Listen() override;
 	
+=======
+
+	UFUNCTION(BlueprintCallable, Category = "Health")
+	void TakeDamage(int DamageAmount);
+
+	// 체력 UI 업데이트를 위한 블루프린트 함수
+	UFUNCTION(BlueprintImplementableEvent, Category = "UI")
+	void UpdateHealthUI(int CurrentHP);
+
+
+>>>>>>> develop
 	UFUNCTION()
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	UFUNCTION()
 	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-	
+
 	UFUNCTION(BlueprintCallable)
 	bool isCanInteract() { return canInteract; };
 	UFUNCTION(BlueprintCallable)
@@ -58,9 +78,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void setInventoryItemKey(int index, int value) { inventory[index] = value; }
 
+<<<<<<< HEAD
 
 	UFUNCTION(BlueprintCallable)
 	ConversationState getState() { return state; };
 	UFUNCTION(BlueprintCallable)
 	bool isTalking() { return Talking; };
 };
+=======
+};
+>>>>>>> develop
