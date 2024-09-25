@@ -1,18 +1,22 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
+#pragma once
 
 #include "Seori.h"
 #include "Interactable.h"
 #include "NPC.h"
+#include "Item.h"
+#include "MisinjeonPlayerController.h"
+#include "Blueprint/UserWidget.h"
+#include "GameFramework/PlayerController.h"
+
+
 
 // Sets default values
 ASeori::ASeori()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	inventory.Init(0, INVENTORY_SIZE);
-
-	inventory[0] = 0;
+	inventory.Init(-1, INVENTORY_SIZE);
 }
 
 // Called when the game starts or when spawned
@@ -39,16 +43,30 @@ void ASeori::Tick(float DeltaTime)
 // 체력 감소 함수 (TakeDamage 함수 구현) 
 void ASeori::TakeDamage(int DamageAmount)
 {
-	HP -= DamageAmount;
-	if (HP < 0)
+	
+	SeoriHP -= DamageAmount;
+	if (SeoriHP < 0)
 	{
-		HP = 0;
+		SeoriHP = 0;
 	}
 
+	UE_LOG(LogTemp, Warning, TEXT("SeoriHP: %d, Damage : %d"), SeoriHP, DamageAmount);
+
+
 	// 블루프린트에서 구현된 함수 호출
-	UpdateHealthUI(HP);
+	GetHealthUI(SeoriHP);
+
 }
 
+bool ASeori::IsDead() const
+{
+	return SeoriHP <= 0;
+}
+
+void ASeori::GetHealthUI(int HP)
+{
+	UE_LOG(LogTemp, Warning, TEXT("UpdateHealthUI: %d"), HP);
+}
 
 
 // Called to bind functionality to input
@@ -77,6 +95,7 @@ void ASeori::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 
 void ASeori::Interact() {
 	if (!canInteract) return;
+	if (Talking) return;
 	FHitResult HitResult;
 
 	FVector StartTrace = PlayerCamera->GetComponentLocation();
@@ -84,7 +103,7 @@ void ASeori::Interact() {
 	FCollisionQueryParams traceParams;
 
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_Visibility, traceParams);
-	//DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
+	DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
 
 	if (HitResult.GetActor() != nullptr) {
 		
@@ -96,22 +115,40 @@ void ASeori::Interact() {
 		InteractType type = targetInteract->getType();
 		switch (type)
 		{
-		case InteractType::NONE:
+		case InteractType::NONE: {
 			//UE_LOG(LogTemp, Log, TEXT("This is Exception"));
 			break;
-		case InteractType::STATIC:
+			}
+		case InteractType::STATIC: {
 			//UE_LOG(LogTemp, Log, TEXT("Interact Static"));
 			break;
-		case InteractType::ITEM:
+			}
+		case InteractType::ITEM:{
 			// 인벤토리에 추가 or 인벤토리가 꽉찼습니다 처리
-			//UE_LOG(LogTemp, Log, TEXT("Picked Item"));
+			AItem* item = Cast<AItem>(targetInteract);
+			for (int i = 0; i < INVENTORY_SIZE; i++) {
+				if (inventory[i] != -1) continue;
+				inventory[i] = item->getItemKey();
+				break;
+			}
 			break;
-		case InteractType::NPC:
+			}
+		case InteractType::NPC:{
 			// 대화하기
 			ANPC* npc = Cast<ANPC>(targetInteract);
 			FVector cameraPos = npc->getCameraPos();
+			Talking = true;
 			break;
+			}
 		}
-		
+		targetInteract->Interact();
 	}
+}
+
+void ASeori::Talk(){
+
+}
+
+void ASeori::Listen() {
+
 }

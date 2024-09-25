@@ -13,6 +13,7 @@ ANPC::ANPC()
 	PrimaryActorTick.bCanEverTick = true;
 	sphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("IntreactBoundary"));
 	RootComponent = sphereComponent;
+	sphereComponent->SetSphereRadius(140.0f);
 	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(sphereComponent);
 	CameraPos = CreateDefaultSubobject<USceneComponent>(TEXT("CameraPos"));
@@ -24,6 +25,7 @@ void ANPC::BeginPlay()
 {
 	Super::BeginPlay();
 	type = InteractType::NPC;
+	state = ConversationState::TALK;
 }
    
 // Called every frame
@@ -56,14 +58,34 @@ InteractType ANPC::getType() {
 
 void ANPC::Interact() {
 	//UE_LOG(LogTemp, Log, TEXT("NPC Interact"));
-	if (isTalking) return;
+	if (Talking) return;
 	TalkStart();
 }
 
 void ANPC::TalkStart() {
+	Talking = true;
 	// 대사 시작
+	switch (state)
+	{
+	case ConversationState::LISTEN:
+		Listen();
+		break;
+	case ConversationState::TALK:
+		Talk();
+		break;
+	default:
+		break;
+	}
 }
 
 FVector ANPC::getCameraPos() {
 	return CameraPos->GetComponentLocation();
+}
+
+void ANPC::Talk() {
+
+}
+
+void ANPC::Listen() {
+
 }

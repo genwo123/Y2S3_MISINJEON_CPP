@@ -6,6 +6,13 @@
 #include "UObject/Interface.h"
 #include "Conversation.generated.h"
 
+UENUM(BlueprintType)
+enum class ConversationState : uint8
+{
+	LISTEN UMETA(DisplayName = "Listen"),
+	TALK UMETA(DisplayName = "Talk")
+};
+
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
 class UConversation : public UInterface
@@ -22,4 +29,9 @@ class Y2S3_MISINJEON_API IConversation
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
+	ConversationState state;
+
+	virtual void Talk(){};
+	virtual void Listen() {};
+	
 };
