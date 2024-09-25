@@ -63,7 +63,7 @@ public:
 	// 체력 UI 업데이트를 위한 블루프린트 함수
 	
 	UFUNCTION(BlueprintCallable, Category = "Health")
-	void GetHealthUI(int HP);
+	int GetHealthUI() {return SeoriHP;};
 
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
