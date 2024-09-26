@@ -18,6 +18,8 @@ ANPC::ANPC()
 	Mesh->SetupAttachment(sphereComponent);
 	CameraPos = CreateDefaultSubobject<USceneComponent>(TEXT("CameraPos"));
 	CameraPos->SetupAttachment(sphereComponent);
+	SeoriPos = CreateDefaultSubobject<USceneComponent>(TEXT("SeoriPos"));
+	SeoriPos->SetupAttachment(sphereComponent);
 }
 
 // Called when the game starts or when spawned
@@ -26,6 +28,7 @@ void ANPC::BeginPlay()
 	Super::BeginPlay();
 	type = InteractType::NPC;
 	state = ConversationState::TALK;
+	ResetRotate = GetActorRotation();
 }
    
 // Called every frame
@@ -39,7 +42,7 @@ InteractType ANPC::getType() {
 	// 대화시작
 	ACharacter* player = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 	if (player == nullptr) return InteractType::NONE;
-	ResetRotate = GetActorRotation();
+	
 	FVector PlayerLoc = player->GetActorLocation();
 	FVector NpcLoc = GetActorLocation();
 
@@ -59,33 +62,24 @@ InteractType ANPC::getType() {
 void ANPC::Interact() {
 	//UE_LOG(LogTemp, Log, TEXT("NPC Interact"));
 	if (Talking) return;
-	TalkStart();
-}
-
-void ANPC::TalkStart() {
 	Talking = true;
-	// 대사 시작
-	switch (state)
-	{
-	case ConversationState::LISTEN:
-		Listen();
-		break;
-	case ConversationState::TALK:
-		Talk();
-		break;
-	default:
-		break;
-	}
 }
 
 FVector ANPC::getCameraPos() {
 	return CameraPos->GetComponentLocation();
 }
 
-void ANPC::Talk() {
+FVector ANPC::getSeoriPos() {
+	return SeoriPos->GetComponentLocation();
+}
 
+void ANPC::Talk() {
+	state = ConversationState::TALK;
 }
 
 void ANPC::Listen() {
-
+	state = ConversationState::LISTEN;
+}
+void ANPC::ResetRotation() {
+	SetActorRotation(ResetRotate);
 }

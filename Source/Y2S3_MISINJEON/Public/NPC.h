@@ -23,12 +23,18 @@ class Y2S3_MISINJEON_API ANPC : public AActor, public IInteractable, public ICon
 
 	UPROPERTY(Category = Mesh, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<USkeletalMeshComponent> Mesh;
+	// 대화시 카메라 위치
 	UPROPERTY(Category = Guide, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<USceneComponent> CameraPos;
+	// 대화시 서리 위치
+	UPROPERTY(Category = Guide, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<USceneComponent> SeoriPos;
 
 public:	
 	// Sets default values for this actor's properties
 	ANPC();
+	UPROPERTY(Category = State, EditAnywhere)
+	int NPCid = 0;
 
 protected:
 	// Called when the game starts or when spawned
@@ -43,13 +49,22 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual InteractType getType() override;
 	virtual void Interact() override;
-	virtual void Talk() override;
-	virtual void Listen() override;
-	void TalkStart();
 	FVector getCameraPos();
+	FVector getSeoriPos();
+	
+	UFUNCTION(BlueprintCallable)
+	virtual void Talk() override;
+	UFUNCTION(BlueprintCallable)
+	virtual void Listen() override;	
 	UFUNCTION(BlueprintCallable)
 	ConversationState getState() { return state; };
+	
 	UFUNCTION(BlueprintCallable)
 	bool isTalking() { return Talking; };
+	UFUNCTION(BlueprintCallable)
+	void setTalking(bool tmp) { Talking = tmp; };
+	
+	UFUNCTION(BlueprintCallable)
+	void ResetRotation();
 
 };
