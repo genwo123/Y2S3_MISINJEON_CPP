@@ -42,16 +42,20 @@ protected:
 	// 상호작용 가능한 상태 플래그
 	bool canInteract = false;
 	bool Talking = false;
+	FVector RestCameraPos;
 
 	
 
 
 public:
+
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	void TalkStart(FVector CameraPos);
 	virtual void Talk() override;
 	virtual void Listen() override;
 
@@ -67,6 +71,7 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
+
 
 	UFUNCTION()
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
@@ -90,5 +95,7 @@ public:
 	ConversationState getState() { return state; };
 	UFUNCTION(BlueprintCallable)
 	bool isTalking() { return Talking; };
+	UFUNCTION(BlueprintCallable)
+	void setTalking(bool tmp);
 };
 
