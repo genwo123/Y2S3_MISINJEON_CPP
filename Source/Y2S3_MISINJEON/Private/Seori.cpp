@@ -1,10 +1,15 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
+#pragma once
 
 #include "Seori.h"
 #include "Interactable.h"
 #include "NPC.h"
 #include "Item.h"
+#include "MisinjeonPlayerController.h"
+#include "Blueprint/UserWidget.h"
+#include "GameFramework/PlayerController.h"
+
+
 
 // Sets default values
 ASeori::ASeori()
@@ -40,14 +45,24 @@ void ASeori::Tick(float DeltaTime)
 // 체력 감소 함수 (TakeDamage 함수 구현) 
 void ASeori::TakeDamage(int DamageAmount)
 {
-	HP -= DamageAmount;
-	if (HP < 0)
+	
+	SeoriHP -= DamageAmount;
+	if (SeoriHP < 0)
 	{
-		HP = 0;
+		SeoriHP = 0;
 	}
 
+	UE_LOG(LogTemp, Warning, TEXT("SeoriHP: %d, Damage : %d"), SeoriHP, DamageAmount);
+
+
 	// 블루프린트에서 구현된 함수 호출
-	UpdateHealthUI(HP);
+	GetHealthUI();
+
+}
+
+bool ASeori::IsDead() const
+{
+	return SeoriHP <= 0;
 }
 
 

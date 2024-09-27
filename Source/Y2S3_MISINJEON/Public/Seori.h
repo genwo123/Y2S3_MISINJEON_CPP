@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/TextBlock.h"
 #include "Camera/CameraComponent.h"
 #include "Conversation.h"
 #include "Seori.generated.h"
@@ -21,16 +22,18 @@ public:
 	// Sets default values for this character's properties
 	ASeori();
 
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UCapsuleComponent* capsuleComponent;
 	UCameraComponent* PlayerCamera;
 
+	
+	
 	//체력 관리 변수
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Health")
-	int HP = LIMIT_HP;
-
+	int SeoriHP = LIMIT_HP;
 
 
 	//인벤토리
@@ -40,6 +43,9 @@ protected:
 	bool canInteract = false;
 	bool Talking = false;
 	FVector RestCameraPos;
+
+	
+
 
 public:
 
@@ -52,15 +58,19 @@ public:
 	void TalkStart(FVector CameraPos);
 	virtual void Talk() override;
 	virtual void Listen() override;
-	
+
+
 
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	void TakeDamage(int DamageAmount);
 
 	// 체력 UI 업데이트를 위한 블루프린트 함수
-	UFUNCTION(BlueprintImplementableEvent, Category = "UI")
-	void UpdateHealthUI(int CurrentHP);
+	
+	UFUNCTION(BlueprintCallable, Category = "Health")
+	int GetHealthUI() {return SeoriHP;};
 
+	UFUNCTION(BlueprintPure)
+	bool IsDead() const;
 
 
 	UFUNCTION()

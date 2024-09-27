@@ -16,7 +16,9 @@ class Y2S3_MISINJEON_API AMisinjeonPlayerController : public APlayerController
 
 
 public:
-	
+	// HUD 위젯에 접근할 수 있는 함수 추가
+	UFUNCTION(BlueprintCallable, Category = "HUD")
+	UUserWidget* GetHUDWidget() const { return HUD; }
 
 protected:
 	// 게임이 시작될 때 HUD를 화면에 표시
@@ -27,7 +29,21 @@ private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class UUserWidget> HUDClass;
 
+
+	UPROPERTY(EditAnywhere, Category = "HUD")
+	TSubclassOf<UUserWidget> GameOverWidgetClass;
+
+	UPROPERTY(EditAnywhere, Category = "HUD")
+	TSubclassOf<UUserWidget> MainMenuWidgetClass;
+
 	// 생성된 HUD 위젯 인스턴스
 	UPROPERTY()
 	UUserWidget* HUD;
+
+	UPROPERTY()
+	UUserWidget* GameOverWidget;
+
+	// 생성된 MainMenu 위젯 인스턴스
+	UPROPERTY()
+	UUserWidget* MainMenuWidget;
 };
