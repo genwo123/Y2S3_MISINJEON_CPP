@@ -25,6 +25,8 @@ void ASeori::BeginPlay()
 	PlayerCamera = Cast<UCameraComponent>(GetDefaultSubobjectByName("Camera"));
 	if (PlayerCamera == nullptr)
 		UE_LOG(LogTemp, Log, TEXT("Can't Find Camera"));
+	
+
 }
 
 // Called every frame
@@ -70,6 +72,8 @@ void ASeori::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 	if (OtherActor->Tags.Contains("Interactable")) {
 		//UE_LOG(LogTemp, Log, TEXT("Can't Interact"));
 		canInteract = false;
+		Talking = false;
+
 	}
 		
 }
@@ -118,7 +122,10 @@ void ASeori::Interact() {
 			// 대화하기
 			ANPC* npc = Cast<ANPC>(targetInteract);
 			FVector cameraPos = npc->getCameraPos();
+			//FVector seoriPos = npc->getSeoriPos();
+			RestCameraPos = PlayerCamera->GetComponentLocation();
 			Talking = true;
+			TalkStart(cameraPos);
 			break;
 			}
 		}
@@ -126,10 +133,27 @@ void ASeori::Interact() {
 	}
 }
 
+
+void ASeori::TalkStart(FVector CameraPos) {
+	//UE_LOG(LogTemp, Log, TEXT("SeoriPos : %d, %d, %d"), SeoriPos.X, SeoriPos.Y, SeoriPos.Z);
+	UE_LOG(LogTemp, Log, TEXT("Camera : %d, %d, %d"), CameraPos.X, CameraPos.Y, CameraPos.Z);
+	PlayerCamera->SetWorldLocation(CameraPos);
+	PlayerCamera->AddRelativeRotation(FQuat(FVector(0, 0, 1), -90));
+}
+
+
 void ASeori::Talk(){
 
 }
 
 void ASeori::Listen() {
 
+}
+
+void ASeori::setTalking(bool tmp) {
+	Talking = tmp;
+	if (!Talking) {
+		PlayerCamera->SetWorldLocation(RestCameraPos);
+		PlayerCamera->AddRelativeRotation(FQuat(FVector(0, 0, 1), 90));
+	}
 }

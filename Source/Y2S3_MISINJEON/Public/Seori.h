@@ -39,13 +39,17 @@ protected:
 	// 상호작용 가능한 상태 플래그
 	bool canInteract = false;
 	bool Talking = false;
+	FVector RestCameraPos;
 
 public:
+
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	void TalkStart(FVector CameraPos);
 	virtual void Talk() override;
 	virtual void Listen() override;
 	
@@ -56,6 +60,7 @@ public:
 	// 체력 UI 업데이트를 위한 블루프린트 함수
 	UFUNCTION(BlueprintImplementableEvent, Category = "UI")
 	void UpdateHealthUI(int CurrentHP);
+
 
 
 	UFUNCTION()
@@ -80,5 +85,7 @@ public:
 	ConversationState getState() { return state; };
 	UFUNCTION(BlueprintCallable)
 	bool isTalking() { return Talking; };
+	UFUNCTION(BlueprintCallable)
+	void setTalking(bool tmp);
 };
 
