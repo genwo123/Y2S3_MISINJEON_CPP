@@ -49,7 +49,7 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	void TalkStart(FVector CameraPos, FVector SeoriPos);
+	void TalkStart(FVector CameraPos);
 	virtual void Talk() override;
 	virtual void Listen() override;
 	
