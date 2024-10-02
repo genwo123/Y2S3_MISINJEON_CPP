@@ -73,6 +73,14 @@ public:
 	bool IsDead() const;
 
 
+<<<<<<< HEAD
+
+
+
+
+
+=======
+>>>>>>> 5ea6b095b9dcb48d5deefdbb77e878f32b22564a
 	UFUNCTION()
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	UFUNCTION()
