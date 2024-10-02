@@ -30,6 +30,8 @@ private:
 	TSubclassOf<class UUserWidget> HUDClass;
 
 
+	
+
 	UPROPERTY(EditAnywhere, Category = "HUD")
 	TSubclassOf<UUserWidget> GameOverWidgetClass;
 
