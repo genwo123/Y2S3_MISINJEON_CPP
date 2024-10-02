@@ -103,7 +103,7 @@ void ASeori::Interact() {
 	FCollisionQueryParams traceParams;
 
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_Visibility, traceParams);
-	DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
+	//DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
 
 	if (HitResult.GetActor() != nullptr) {
 		
@@ -153,7 +153,8 @@ void ASeori::TalkStart(FVector CameraPos) {
 	//UE_LOG(LogTemp, Log, TEXT("SeoriPos : %d, %d, %d"), SeoriPos.X, SeoriPos.Y, SeoriPos.Z);
 	UE_LOG(LogTemp, Log, TEXT("Camera : %d, %d, %d"), CameraPos.X, CameraPos.Y, CameraPos.Z);
 	PlayerCamera->SetWorldLocation(CameraPos);
-	PlayerCamera->AddRelativeRotation(FQuat(FVector(0, 0, 1), -90));
+	PlayerCamera->SetRelativeRotation(FRotator(-7.0, -72.0, 16.0));
+	OnTalking();
 }
 
 
@@ -169,6 +170,6 @@ void ASeori::setTalking(bool tmp) {
 	Talking = tmp;
 	if (!Talking) {
 		PlayerCamera->SetWorldLocation(RestCameraPos);
-		PlayerCamera->AddRelativeRotation(FQuat(FVector(0, 0, 1), 90));
+		PlayerCamera->SetRelativeRotation(FRotator(-15.0, 0.0, 0.0));
 	}
 }

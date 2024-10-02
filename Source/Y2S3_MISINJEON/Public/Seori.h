@@ -78,6 +78,7 @@ public:
 	UFUNCTION()
 	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+	//CanInteract 게터 세터
 	UFUNCTION(BlueprintCallable)
 	bool isCanInteract() { return canInteract; };
 	UFUNCTION(BlueprintCallable)
@@ -85,6 +86,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Interact();
+
+	// Inventory 게터 세터
 	UFUNCTION(BlueprintCallable)
 	TArray<int> getInventory() { return inventory; };
 	UFUNCTION(BlueprintCallable)
@@ -93,9 +96,13 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	ConversationState getState() { return state; };
+	// Talking 게터 세터
 	UFUNCTION(BlueprintCallable)
 	bool isTalking() { return Talking; };
 	UFUNCTION(BlueprintCallable)
 	void setTalking(bool tmp);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = Events)
+	void OnTalking();
 };
 
