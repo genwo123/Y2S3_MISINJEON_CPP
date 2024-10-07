@@ -3,6 +3,8 @@
 
 #include "MisinjeonPlayerController.h"
 #include "Blueprint/UserWidget.h"
+#include "Blueprint/WidgetTree.h"
+#include "Components/Button.h"
 
 void AMisinjeonPlayerController::BeginPlay()
 {
@@ -20,3 +22,62 @@ void AMisinjeonPlayerController::BeginPlay()
     }
 }
 
+void AMisinjeonPlayerController::OpenUI(TSubclassOf<UUserWidget> UIClass)
+{
+    if (UIClass)
+    {
+        UUserWidget* NewUI = CreateWidget<UUserWidget>(this, UIClass);
+        UIStack.Add(NewUI);
+        NewUI->AddToViewport();
+        SetFocusToTopUI();
+    }
+}
+
+void AMisinjeonPlayerController::CloseTopUI()
+{
+    if (UIStack.Num() > 0)
+    {
+        UUserWidget* TopUI = UIStack.Last();
+        UIStack.Pop();
+        TopUI->RemoveFromParent();
+        SetFocusToTopUI();
+    }
+}
+
+void AMisinjeonPlayerController::SetFocusToTopUI()
+{
+    if (UIStack.Num() > 0)
+    {
+        UUserWidget* TopUI = UIStack.Last();
+        SetWidgetFocus(TopUI);
+    }
+}
+
+void AMisinjeonPlayerController::SetupInputComponent()
+{
+    Super::SetupInputComponent();
+    InputComponent->BindAction("UIBack", IE_Pressed, this, &AMisinjeonPlayerController::HandleUIBack);
+}
+
+void AMisinjeonPlayerController::HandleUIBack()
+{
+    if (UIStack.Num() > 1)
+    {
+        CloseTopUI();
+    }
+    else if (UIStack.Num() == 1)
+    {
+        // 게임 일시정지 해제 또는 다른 로직
+    }
+}
+
+void AMisinjeonPlayerController::SetWidgetFocus(UUserWidget* Widget)
+{
+    if (Widget && Widget->IsValidLowLevel())
+    {
+        FInputModeUIOnly InputMode;
+        InputMode.SetWidgetToFocus(Widget->TakeWidget());
+        SetInputMode(InputMode);
+        bShowMouseCursor = true;
+    }
+}
