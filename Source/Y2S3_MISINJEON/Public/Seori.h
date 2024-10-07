@@ -30,7 +30,6 @@ protected:
 	UCameraComponent* PlayerCamera;
 
 	
-	
 	//체력 관리 변수
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Health")
 	int SeoriHP = LIMIT_HP;
@@ -39,7 +38,6 @@ protected:
 	//인벤토리
 	TArray<int> inventory; // itemKey를 저장
 
-	// 상호작용 가능한 상태 플래그
 	bool canInteract = false;
 	bool Talking = false;
 	FVector RestCameraPos;
@@ -48,8 +46,6 @@ protected:
 
 
 public:
-
-
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -101,4 +97,3 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void setTalking(bool tmp);
 };
-
