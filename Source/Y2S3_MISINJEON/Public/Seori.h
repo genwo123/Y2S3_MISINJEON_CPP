@@ -55,7 +55,7 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	void TalkStart(FVector CameraPos);
+	void TalkStart(FVector CameraPos, FRotator LookRotate);
 	virtual void Talk() override;
 	virtual void Listen() override;
 
@@ -72,15 +72,6 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
 
-
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> 5ea6b095b9dcb48d5deefdbb77e878f32b22564a
 	UFUNCTION()
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	UFUNCTION()
@@ -109,8 +100,5 @@ public:
 	bool isTalking() { return Talking; };
 	UFUNCTION(BlueprintCallable)
 	void setTalking(bool tmp);
-
-	UFUNCTION(BlueprintImplementableEvent, Category = Events)
-	void OnTalking();
 };
 

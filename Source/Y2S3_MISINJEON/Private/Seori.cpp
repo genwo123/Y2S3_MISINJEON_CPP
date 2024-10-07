@@ -8,6 +8,8 @@
 #include "MisinjeonPlayerController.h"
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/PlayerController.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "MisinjeonPlayerController.h"
 
 
 
@@ -141,11 +143,15 @@ void ASeori::Interact() {
 		case InteractType::NPC:{
 			// 대화하기
 			ANPC* npc = Cast<ANPC>(targetInteract);
+			// 카메라 좌표 구하기
 			FVector cameraPos = npc->getCameraPos();
+			FVector LookPos = (npc->GetActorLocation() + GetActorLocation()) * 0.5f;
+			FRotator lookRotation = UKismetMathLibrary::FindLookAtRotation(cameraPos,LookPos);
+
 			//FVector seoriPos = npc->getSeoriPos();
 			RestCameraPos = PlayerCamera->GetComponentLocation();
 			Talking = true;
-			TalkStart(cameraPos);
+			TalkStart(cameraPos, lookRotation);
 			break;
 			}
 		}
@@ -154,12 +160,11 @@ void ASeori::Interact() {
 }
 
 
-void ASeori::TalkStart(FVector CameraPos) {
+void ASeori::TalkStart(FVector CameraPos , FRotator LookRotate) {
 	//UE_LOG(LogTemp, Log, TEXT("SeoriPos : %d, %d, %d"), SeoriPos.X, SeoriPos.Y, SeoriPos.Z);
 	UE_LOG(LogTemp, Log, TEXT("Camera : %d, %d, %d"), CameraPos.X, CameraPos.Y, CameraPos.Z);
 	PlayerCamera->SetWorldLocation(CameraPos);
-	PlayerCamera->SetRelativeRotation(FRotator(-7.0, -72.0, 16.0));
-	OnTalking();
+	PlayerCamera->SetWorldRotation(LookRotate);
 }
 
 
