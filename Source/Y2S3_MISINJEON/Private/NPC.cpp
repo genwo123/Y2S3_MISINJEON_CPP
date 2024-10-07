@@ -79,6 +79,7 @@ void ANPC::Talk() {
 
 void ANPC::Listen() {
 	state = ConversationState::LISTEN;
+	
 }
 void ANPC::ResetRotation() {
 	SetActorRotation(ResetRotate);
