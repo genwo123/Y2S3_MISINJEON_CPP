@@ -63,7 +63,10 @@ public:
 	bool isTalking() { return Talking; };
 	UFUNCTION(BlueprintCallable)
 	void setTalking(bool tmp) { Talking = tmp; };
-	
+	UFUNCTION(BlueprintImplementableEvent)
+	void onTalking();
+
+
 	UFUNCTION(BlueprintCallable)
 	void ResetRotation();
 

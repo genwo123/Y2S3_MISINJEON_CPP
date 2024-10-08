@@ -63,6 +63,7 @@ void ANPC::Interact() {
 	//UE_LOG(LogTemp, Log, TEXT("NPC Interact"));
 	if (Talking) return;
 	Talking = true;
+	onTalking();
 }
 
 FVector ANPC::getCameraPos() {

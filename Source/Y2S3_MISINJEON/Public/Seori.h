@@ -96,4 +96,6 @@ public:
 	bool isTalking() { return Talking; };
 	UFUNCTION(BlueprintCallable)
 	void setTalking(bool tmp);
+	UFUNCTION(BlueprintImplementableEvent)
+	void onTalking();
 };
