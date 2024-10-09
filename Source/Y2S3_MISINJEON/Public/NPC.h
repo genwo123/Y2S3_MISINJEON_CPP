@@ -35,6 +35,8 @@ public:
 	ANPC();
 	UPROPERTY(Category = State, EditAnywhere)
 	int NPCid = 0;
+	UPROPERTY(Category = State, EditAnywhere)
+	FString name = "";
 
 protected:
 	// Called when the game starts or when spawned
@@ -69,5 +71,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ResetRotation();
+
+	UFUNCTION(BlueprintCallable)
+	FString getName() { return name; };
 
 };
