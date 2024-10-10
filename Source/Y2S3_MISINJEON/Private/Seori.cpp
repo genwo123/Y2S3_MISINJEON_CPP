@@ -179,7 +179,8 @@ void ASeori::Listen() {
 void ASeori::setTalking(bool tmp) {
 	Talking = tmp;
 	if (!Talking) {
-		PlayerCamera->SetWorldLocation(RestCameraPos);
+		PlayerCamera->SetRelativeLocation(FVector(0,0,0));
 		PlayerCamera->SetRelativeRotation(FRotator(-15.0, 0.0, 0.0));
+
 	}
 }
