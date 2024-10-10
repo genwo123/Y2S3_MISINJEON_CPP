@@ -169,11 +169,11 @@ void ASeori::TalkStart(FVector CameraPos , FRotator LookRotate) {
 
 
 void ASeori::Talk(){
-
+	state = ConversationState::TALK;
 }
 
 void ASeori::Listen() {
-
+	state = ConversationState::LISTEN;
 }
 
 void ASeori::setTalking(bool tmp) {

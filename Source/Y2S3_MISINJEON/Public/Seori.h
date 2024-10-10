@@ -52,7 +52,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	void TalkStart(FVector CameraPos, FRotator LookRotate);
+	UFUNCTION(BlueprintCallable)
 	virtual void Talk() override;
+	UFUNCTION(BlueprintCallable)
 	virtual void Listen() override;
 
 
