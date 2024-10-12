@@ -28,6 +28,9 @@ protected:
 	virtual void BeginPlay() override;
 	UCapsuleComponent* capsuleComponent;
 	UCameraComponent* PlayerCamera;
+<<<<<<< HEAD
+	int HP = 5;
+=======
 
 	
 	
@@ -37,9 +40,9 @@ protected:
 
 
 	//인벤토리
+>>>>>>> develop
 	TArray<int> inventory; // itemKey를 저장
 
-	// 상호작용 가능한 상태 플래그
 	bool canInteract = false;
 	bool Talking = false;
 	FVector RestCameraPos;
@@ -47,14 +50,21 @@ protected:
 	
 
 
+<<<<<<< HEAD
+public:	
+=======
 public:
 
 
+>>>>>>> develop
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+<<<<<<< HEAD
+	
+=======
 	void TalkStart(FVector CameraPos);
 	virtual void Talk() override;
 	virtual void Listen() override;
@@ -72,11 +82,12 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
 
+>>>>>>> develop
 	UFUNCTION()
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	UFUNCTION()
 	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-
+	
 	UFUNCTION(BlueprintCallable)
 	bool isCanInteract() { return canInteract; };
 	UFUNCTION(BlueprintCallable)
@@ -98,3 +109,7 @@ public:
 	void setTalking(bool tmp);
 };
 
+<<<<<<< HEAD
+};
+=======
+>>>>>>> develop

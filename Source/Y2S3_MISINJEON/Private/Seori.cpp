@@ -41,6 +41,8 @@ void ASeori::Tick(float DeltaTime)
 
 }
 
+<<<<<<< HEAD
+=======
 
 // 체력 감소 함수 (TakeDamage 함수 구현) 
 void ASeori::TakeDamage(int DamageAmount)
@@ -72,6 +74,7 @@ bool ASeori::IsDead() const
 
 
 
+>>>>>>> develop
 // Called to bind functionality to input
 void ASeori::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
