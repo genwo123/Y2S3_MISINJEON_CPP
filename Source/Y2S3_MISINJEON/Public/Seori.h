@@ -28,6 +28,7 @@ protected:
 	virtual void BeginPlay() override;
 	UCapsuleComponent* capsuleComponent;
 	UCameraComponent* PlayerCamera;
+	int HP = 5;
 
 	
 	//체력 관리 변수

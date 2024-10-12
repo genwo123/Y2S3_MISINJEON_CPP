@@ -10,7 +10,6 @@ class Y2S3_MISINJEON_API AMisinjeonPlayerController : public APlayerController
 {
     GENERATED_BODY()
 public:
-
     //UI Æ÷Ä¿½Ì¿ë
     UFUNCTION(BlueprintCallable, Category = "UI")
     void OpenUI(TSubclassOf<class UUserWidget> UIClass);
@@ -53,4 +52,3 @@ private:
     UPROPERTY()
     UUserWidget* MainMenuWidget;
 };
-

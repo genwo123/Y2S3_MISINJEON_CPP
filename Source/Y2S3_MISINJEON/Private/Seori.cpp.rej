@@ -1,9 +1,0 @@
-diff a/Source/Y2S3_MISINJEON/Private/Seori.cpp b/Source/Y2S3_MISINJEON/Private/Seori.cpp	(rejected hunks)
-@@ -43,6 +43,7 @@
- 
- }
- 
-+<<<<<<< HEAD
- 
- // ü�� ���� �Լ� (TakeDamage �Լ� ����) 
- void ASeori::TakeDamage(int DamageAmount)
