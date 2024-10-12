@@ -19,7 +19,8 @@ public:
 	AItem();
 	UPROPERTY(Category = Mesh, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<USphereComponent> sphereComponent;
-
+	UPROPERTY(Category = State, EditAnywhere, BlueprintReadWrite)
+	int itemKey;
 
 
 protected:
@@ -30,4 +31,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual InteractType getType() override;
 	virtual void Interact() override;
+	int getItemKey() { return itemKey; }
+
 };
