@@ -33,7 +33,7 @@ void ASeori::BeginPlay()
 	if (PlayerCamera == nullptr)
 		UE_LOG(LogTemp, Log, TEXT("Can't Find Camera"));
 	
-
+	inventory[0] = 1; // 티켓을 기본으로 가지고 시작
 }
 
 // Called every frame
