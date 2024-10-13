@@ -10,13 +10,6 @@ class Y2S3_MISINJEON_API AMisinjeonPlayerController : public APlayerController
 {
     GENERATED_BODY()
 public:
-    //UI 포커싱용
-    UFUNCTION(BlueprintCallable, Category = "UI")
-    void OpenUI(TSubclassOf<class UUserWidget> UIClass);
-    UFUNCTION(BlueprintCallable, Category = "UI")
-    void CloseTopUI();
-    UFUNCTION(BlueprintCallable, Category = "UI")
-    void SetFocusToTopUI();
 
     // HUD 위젯에 접근할 수 있는 함수
     UFUNCTION(BlueprintCallable, Category = "HUD")
@@ -25,14 +18,9 @@ public:
 protected:
     // 게임이 시작될 때 HUD를 화면에 표시
     virtual void BeginPlay() override;
-    virtual void SetupInputComponent() override;
+
 
 private:
-    //UI스택 관리용 매니저먼트
-    UPROPERTY()
-    TArray<class UUserWidget*> UIStack;
-    void HandleUIBack();
-    void SetWidgetFocus(UUserWidget* Widget);
 
     // HUD로 사용할 위젯 블루프린트 클래스
     UPROPERTY(EditAnywhere, Category = "HUD")
