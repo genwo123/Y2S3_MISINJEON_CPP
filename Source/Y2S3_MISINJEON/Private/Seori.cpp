@@ -8,6 +8,8 @@
 #include "MisinjeonPlayerController.h"
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/PlayerController.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "MisinjeonPlayerController.h"
 
 
 
@@ -31,7 +33,7 @@ void ASeori::BeginPlay()
 	if (PlayerCamera == nullptr)
 		UE_LOG(LogTemp, Log, TEXT("Can't Find Camera"));
 	
-
+	inventory[0] = 1; // 티켓을 기본으로 가지고 시작
 }
 
 // Called every frame
@@ -40,9 +42,6 @@ void ASeori::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-
-<<<<<<< HEAD
-=======
 
 // 체력 감소 함수 (TakeDamage 함수 구현) 
 void ASeori::TakeDamage(int DamageAmount)
@@ -74,7 +73,6 @@ bool ASeori::IsDead() const
 
 
 
->>>>>>> develop
 // Called to bind functionality to input
 void ASeori::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -111,7 +109,7 @@ void ASeori::Interact() {
 	FCollisionQueryParams traceParams;
 
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_Visibility, traceParams);
-	DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
+	//DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
 
 	if (HitResult.GetActor() != nullptr) {
 		
@@ -144,11 +142,15 @@ void ASeori::Interact() {
 		case InteractType::NPC:{
 			// 대화하기
 			ANPC* npc = Cast<ANPC>(targetInteract);
+			// 카메라 좌표 구하기
 			FVector cameraPos = npc->getCameraPos();
+			FVector LookPos = (npc->GetActorLocation() + GetActorLocation()) * 0.5f;
+			FRotator lookRotation = UKismetMathLibrary::FindLookAtRotation(cameraPos,LookPos);
+
 			//FVector seoriPos = npc->getSeoriPos();
 			RestCameraPos = PlayerCamera->GetComponentLocation();
 			Talking = true;
-			TalkStart(cameraPos);
+			TalkStart(cameraPos, lookRotation);
 			break;
 			}
 		}
@@ -157,26 +159,27 @@ void ASeori::Interact() {
 }
 
 
-void ASeori::TalkStart(FVector CameraPos) {
+void ASeori::TalkStart(FVector CameraPos , FRotator LookRotate) {
 	//UE_LOG(LogTemp, Log, TEXT("SeoriPos : %d, %d, %d"), SeoriPos.X, SeoriPos.Y, SeoriPos.Z);
 	UE_LOG(LogTemp, Log, TEXT("Camera : %d, %d, %d"), CameraPos.X, CameraPos.Y, CameraPos.Z);
 	PlayerCamera->SetWorldLocation(CameraPos);
-	PlayerCamera->AddRelativeRotation(FQuat(FVector(0, 0, 1), -90));
+	PlayerCamera->SetWorldRotation(LookRotate);
 }
 
 
 void ASeori::Talk(){
-
+	state = ConversationState::TALK;
 }
 
 void ASeori::Listen() {
-
+	state = ConversationState::LISTEN;
 }
 
 void ASeori::setTalking(bool tmp) {
 	Talking = tmp;
 	if (!Talking) {
-		PlayerCamera->SetWorldLocation(RestCameraPos);
-		PlayerCamera->AddRelativeRotation(FQuat(FVector(0, 0, 1), 90));
+		PlayerCamera->SetRelativeLocation(FVector(0,0,0));
+		PlayerCamera->SetRelativeRotation(FRotator(-15.0, 0.0, 0.0));
+
 	}
 }

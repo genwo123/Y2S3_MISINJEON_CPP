@@ -28,11 +28,8 @@ protected:
 	virtual void BeginPlay() override;
 	UCapsuleComponent* capsuleComponent;
 	UCameraComponent* PlayerCamera;
-<<<<<<< HEAD
 	int HP = 5;
-=======
 
-	
 	
 	//체력 관리 변수
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Health")
@@ -40,7 +37,6 @@ protected:
 
 
 	//인벤토리
->>>>>>> develop
 	TArray<int> inventory; // itemKey를 저장
 
 	bool canInteract = false;
@@ -50,23 +46,16 @@ protected:
 	
 
 
-<<<<<<< HEAD
-public:	
-=======
 public:
-
-
->>>>>>> develop
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-<<<<<<< HEAD
-	
-=======
-	void TalkStart(FVector CameraPos);
+	void TalkStart(FVector CameraPos, FRotator LookRotate);
+	UFUNCTION(BlueprintCallable)
 	virtual void Talk() override;
+	UFUNCTION(BlueprintCallable)
 	virtual void Listen() override;
 
 
@@ -82,12 +71,12 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
 
->>>>>>> develop
 	UFUNCTION()
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	UFUNCTION()
 	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-	
+
+	//CanInteract 게터 세터
 	UFUNCTION(BlueprintCallable)
 	bool isCanInteract() { return canInteract; };
 	UFUNCTION(BlueprintCallable)
@@ -95,6 +84,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Interact();
+
+	// Inventory 게터 세터
 	UFUNCTION(BlueprintCallable)
 	TArray<int> getInventory() { return inventory; };
 	UFUNCTION(BlueprintCallable)
@@ -103,13 +94,11 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	ConversationState getState() { return state; };
+	// Talking 게터 세터
 	UFUNCTION(BlueprintCallable)
 	bool isTalking() { return Talking; };
 	UFUNCTION(BlueprintCallable)
 	void setTalking(bool tmp);
+	UFUNCTION(BlueprintImplementableEvent)
+	void onTalking();
 };
-
-<<<<<<< HEAD
-};
-=======
->>>>>>> develop

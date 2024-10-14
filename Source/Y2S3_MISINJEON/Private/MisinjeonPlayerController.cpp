@@ -28,8 +28,8 @@ void AMisinjeonPlayerController::OpenUI(TSubclassOf<UUserWidget> UIClass)
     {
         UUserWidget* NewUI = CreateWidget<UUserWidget>(this, UIClass);
         UIStack.Add(NewUI);
-        NewUI->AddToViewport();
-        SetFocusToTopUI();
+       // NewUI->AddToViewport();
+       // SetFocusToTopUI();
     }
 }
 
