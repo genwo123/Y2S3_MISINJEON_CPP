@@ -21,6 +21,8 @@ void AMisinjeonPlayerController::BeginPlay()
         }
     }
 }
+<<<<<<< HEAD
+=======
 
 void AMisinjeonPlayerController::OpenUI(TSubclassOf<UUserWidget> UIClass)
 {
@@ -81,3 +83,4 @@ void AMisinjeonPlayerController::SetWidgetFocus(UUserWidget* Widget)
         bShowMouseCursor = true;
     }
 }
+>>>>>>> origin/develop
