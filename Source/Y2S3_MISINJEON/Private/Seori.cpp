@@ -5,6 +5,7 @@
 #include "Interactable.h"
 #include "NPC.h"
 #include "Item.h"
+#include "Static.h"
 #include "MisinjeonPlayerController.h"
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/PlayerController.h"
@@ -109,16 +110,18 @@ void ASeori::Interact() {
 	FCollisionQueryParams traceParams;
 
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_Visibility, traceParams);
-	//DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
+	DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
 
 	if (HitResult.GetActor() != nullptr) {
 		
 		AActor* target = HitResult.GetActor();
-
+		
 		IInteractable* targetInteract = Cast<IInteractable>(target);
 		if (targetInteract == nullptr)return;
 		
+
 		InteractType type = targetInteract->getType();
+
 		switch (type)
 		{
 		case InteractType::NONE: {
@@ -126,8 +129,12 @@ void ASeori::Interact() {
 			break;
 			}
 		case InteractType::STATIC: {
-			//UE_LOG(LogTemp, Log, TEXT("Interact Static"));
-			break;
+			AStatic* fabric= Cast<AStatic>(targetInteract);
+			//UE_LOG(LogTemp, Log, TEXT("% s"), *fabric->GetName());
+			if (fabric != nullptr) {
+				fabric->OnInteract();
+			}
+			break; 
 			}
 		case InteractType::ITEM:{
 			// 인벤토리에 추가 or 인벤토리가 꽉찼습니다 처리

@@ -36,4 +36,6 @@ public:
 	bool isInteracted() { return interacted; }
 	UFUNCTION(BlueprintCallable)
 	void setInteracted(bool tmp) { interacted = tmp; }
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnInteract();
 };

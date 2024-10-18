@@ -43,7 +43,7 @@ protected:
 	bool Talking = false;
 	FVector RestCameraPos;
 
-	
+	bool openTurnstile = false;
 
 
 public:
@@ -91,12 +91,17 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void setInventoryItemKey(int index, int value) { inventory[index] = value; }
 
+	UFUNCTION(BlueprintCallable)
+	bool getOpenTurnstile() { return openTurnstile; }
+	UFUNCTION(BlueprintCallable)
+	void setOpenTurnstile(bool tmp) { openTurnstile = tmp; }
+
 
 	UFUNCTION(BlueprintCallable)
 	ConversationState getState() { return state; };
 	// Talking 게터 세터
 	UFUNCTION(BlueprintCallable)
-	bool isTalking() { return Talking; };
+	bool isTalking() { return Talking; }; 
 	UFUNCTION(BlueprintCallable)
 	void setTalking(bool tmp);
 	UFUNCTION(BlueprintImplementableEvent)
