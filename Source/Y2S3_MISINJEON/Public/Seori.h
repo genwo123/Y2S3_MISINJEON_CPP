@@ -43,7 +43,7 @@ protected:
 	bool Talking = false;
 	FVector RestCameraPos;
 
-	
+	bool openTurnstile = false;
 
 
 public:
@@ -101,4 +101,10 @@ public:
 	void setTalking(bool tmp);
 	UFUNCTION(BlueprintImplementableEvent)
 	void onTalking();
+
+
+	UFUNCTION(BlueprintCallable)
+	bool getOpenTurnstile() { return openTurnstile; }
+	UFUNCTION(BlueprintCallable)
+	void setOpenTurnstile(bool tmp) { openTurnstile = tmp; }
 };
