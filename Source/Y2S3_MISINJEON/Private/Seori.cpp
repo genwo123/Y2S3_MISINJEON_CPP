@@ -102,9 +102,20 @@ void ASeori::Interact() {
 	if (!canInteract) return;
 	if (Talking) return;
 	FHitResult HitResult;
-
-	FVector StartTrace = PlayerCamera->GetComponentLocation();
-	FVector EndTrace = StartTrace + (PlayerCamera->GetForwardVector() * 1000);
+	FVector StartTrace = FVector();
+	FVector EndTrace = FVector();
+	switch (camMode)
+	{
+	case CameraMode::TPS:
+		StartTrace = PlayerCamera->GetComponentLocation();
+		EndTrace = StartTrace + (PlayerCamera->GetForwardVector() * 1000);
+		break;
+	case CameraMode::CCTV:
+		StartTrace = GetActorLocation();
+		EndTrace = StartTrace + (GetActorForwardVector() * 1000);
+		break;
+	}
+	
 	FCollisionQueryParams traceParams;
 
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_Visibility, traceParams);
