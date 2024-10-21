@@ -9,6 +9,12 @@
 #include "Camera/CameraComponent.h"
 #include "Conversation.h"
 #include "Seori.generated.h"
+UENUM(BlueprintType)
+enum class CameraMode : uint8 {
+	TPS UMETA(DisplayName = "TPS"),
+	CCTV UMETA(DisplayNmae = "CCTV")
+};
+
 
 UCLASS()
 class Y2S3_MISINJEON_API ASeori : public ACharacter, public IConversation
@@ -44,6 +50,7 @@ protected:
 	FVector RestCameraPos;
 
 	bool openTurnstile = false;
+	CameraMode camMode = CameraMode::TPS;
 
 
 public:
@@ -107,4 +114,7 @@ public:
 	bool getOpenTurnstile() { return openTurnstile; }
 	UFUNCTION(BlueprintCallable)
 	void setOpenTurnstile(bool tmp) { openTurnstile = tmp; }
+
+	UFUNCTION(BlueprintCallable)
+	void setCameraMode(CameraMode tmp) { camMode = tmp; };
 };
