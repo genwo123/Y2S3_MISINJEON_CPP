@@ -63,7 +63,6 @@ void ASeori::TakeDamage(int DamageAmount)
 
 	// 블루프린트에서 구현된 함수 호출
 	GetHealthUI();
-
 }
 
 bool ASeori::IsDead() const
