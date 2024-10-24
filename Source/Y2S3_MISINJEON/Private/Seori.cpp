@@ -55,20 +55,15 @@ void ASeori::TakeDamage(int DamageAmount)
 
 	UE_LOG(LogTemp, Warning, TEXT("SeoriHP: %d, Damage : %d"), SeoriHP, DamageAmount);
 
-	if (IsDead())
+	if (SeoriHP <= 0)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Seori is Dead!"));
+		OnDead();
 	}
-
-
 	// 블루프린트에서 구현된 함수 호출
 	GetHealthUI();
 }
 
-bool ASeori::IsDead() const
-{
-	return SeoriHP <= 0;
-}
 
 
 

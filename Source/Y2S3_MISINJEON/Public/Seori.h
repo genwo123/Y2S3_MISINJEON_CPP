@@ -22,7 +22,7 @@ class Y2S3_MISINJEON_API ASeori : public ACharacter, public IConversation
 	GENERATED_BODY()
 
 	const int LIMIT_HP = 5;
-	const int INVENTORY_SIZE = 5;
+	const int INVENTORY_SIZE = 9;
 
 public:
 	// Sets default values for this character's properties
@@ -75,8 +75,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	int GetHealthUI() {return SeoriHP;};
 
-	UFUNCTION(BlueprintPure)
-	bool IsDead() const;
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnDead();
 
 	UFUNCTION()
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
