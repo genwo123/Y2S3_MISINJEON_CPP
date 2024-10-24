@@ -31,9 +31,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual InteractType getType() override;
 	virtual void Interact() override;
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnInteract();
 
 	UFUNCTION(BlueprintCallable)
 	bool isInteracted() { return interacted; }
 	UFUNCTION(BlueprintCallable)
 	void setInteracted(bool tmp) { interacted = tmp; }
+
 };
