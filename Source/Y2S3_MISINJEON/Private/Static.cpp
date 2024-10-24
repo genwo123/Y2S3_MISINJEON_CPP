@@ -34,4 +34,5 @@ InteractType AStatic::getType() {
 void AStatic::Interact() {
 	if (interacted) return;
 	interacted = true;
+	OnInteract();
 }

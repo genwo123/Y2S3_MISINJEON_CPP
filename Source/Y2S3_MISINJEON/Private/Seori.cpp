@@ -31,7 +31,7 @@ void ASeori::BeginPlay()
 
 	PlayerCamera = Cast<UCameraComponent>(GetDefaultSubobjectByName("Camera"));
 	if (PlayerCamera == nullptr)
-		UE_LOG(LogTemp, Log, TEXT("Can't Find Camera"));
+		//UE_LOG(LogTemp, Log, TEXT("Can't Find Camera"));
 	
 	inventory[0] = 1; // 티켓을 기본으로 가지고 시작
 }
@@ -53,11 +53,11 @@ void ASeori::TakeDamage(int DamageAmount)
 		SeoriHP = 0;
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("SeoriHP: %d, Damage : %d"), SeoriHP, DamageAmount);
+	//UE_LOG(LogTemp, Warning, TEXT("SeoriHP: %d, Damage : %d"), SeoriHP, DamageAmount);
 
 	if (IsDead())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Seori is Dead!"));
+		//UE_LOG(LogTemp, Warning, TEXT("Seori is Dead!"));
 	}
 
 
@@ -117,18 +117,20 @@ void ASeori::Interact() {
 	}
 	
 	FCollisionQueryParams traceParams;
-
+	
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartTrace, EndTrace, ECC_Visibility, traceParams);
 	//DrawDebugLine(GetWorld(), StartTrace, EndTrace, FColor::Green, false, 2.0f);
 
 	if (HitResult.GetActor() != nullptr) {
 		
 		AActor* target = HitResult.GetActor();
+		UE_LOG(LogTemp, Log, TEXT("%s"), *target->GetName());
 
 		IInteractable* targetInteract = Cast<IInteractable>(target);
-		if (targetInteract == nullptr)return;
-		
+		if (targetInteract == nullptr) return;
+
 		InteractType type = targetInteract->getType();
+
 		switch (type)
 		{
 		case InteractType::NONE: {
@@ -160,6 +162,7 @@ void ASeori::Interact() {
 			//FVector seoriPos = npc->getSeoriPos();
 			RestCameraPos = PlayerCamera->GetComponentLocation();
 			Talking = true;
+
 			TalkStart(cameraPos, lookRotation);
 			break;
 			}
@@ -171,7 +174,7 @@ void ASeori::Interact() {
 
 void ASeori::TalkStart(FVector CameraPos , FRotator LookRotate) {
 	//UE_LOG(LogTemp, Log, TEXT("SeoriPos : %d, %d, %d"), SeoriPos.X, SeoriPos.Y, SeoriPos.Z);
-	UE_LOG(LogTemp, Log, TEXT("Camera : %d, %d, %d"), CameraPos.X, CameraPos.Y, CameraPos.Z);
+	//UE_LOG(LogTemp, Log, TEXT("Camera : %d, %d, %d"), CameraPos.X, CameraPos.Y, CameraPos.Z);
 	PlayerCamera->SetWorldLocation(CameraPos);
 	PlayerCamera->SetWorldRotation(LookRotate);
 }
@@ -190,6 +193,6 @@ void ASeori::setTalking(bool tmp) {
 	if (!Talking) {
 		PlayerCamera->SetRelativeLocation(FVector(0,0,0));
 		PlayerCamera->SetRelativeRotation(FRotator(-15.0, 0.0, 0.0));
-
+		//SetActorRotation(ResetPlayerRot);
 	}
 }
