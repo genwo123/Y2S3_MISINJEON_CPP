@@ -48,6 +48,7 @@ protected:
 	bool canInteract = false;
 	bool Talking = false;
 	FVector RestCameraPos;
+	FRotator ResetPlayerRot;
 
 	bool openTurnstile = false;
 	CameraMode camMode = CameraMode::TPS;
