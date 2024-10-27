@@ -50,7 +50,7 @@ protected:
 	FVector RestCameraPos;
 	FRotator ResetPlayerRot;
 
-	bool openTurnstile = false;
+	bool openTurnstile = true;
 	CameraMode camMode = CameraMode::TPS;
 
 
@@ -76,7 +76,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	int GetHealthUI() {return SeoriHP;};
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void OnDead();
 
 	UFUNCTION()

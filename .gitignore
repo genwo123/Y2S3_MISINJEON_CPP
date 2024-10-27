@@ -95,6 +95,7 @@ Content/Dialogue/**
 Content/Cinematic/**
 Content/*.uasset
 Content/Base_Material/**
+Content/Movies/**
 
 
 # Except for these files and directories

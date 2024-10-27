@@ -46,7 +46,7 @@ void ASeori::Tick(float DeltaTime)
 // 체력 감소 함수 (TakeDamage 함수 구현) 
 void ASeori::TakeDamage(int DamageAmount)
 {
-	
+	if (SeoriHP <= 0) return;
 	SeoriHP -= DamageAmount;
 	if (SeoriHP < 0)
 	{
@@ -57,12 +57,8 @@ void ASeori::TakeDamage(int DamageAmount)
 
 	if (SeoriHP <= 0)
 	{
-<<<<<<< HEAD
 		UE_LOG(LogTemp, Warning, TEXT("Seori is Dead!"));
-		OnDead();
-=======
-		//UE_LOG(LogTemp, Warning, TEXT("Seori is Dead!"));
->>>>>>> origin/develop
+		//OnDead();
 	}
 	// 블루프린트에서 구현된 함수 호출
 	GetHealthUI();
