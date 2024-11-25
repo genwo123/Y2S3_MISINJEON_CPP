@@ -21,8 +21,10 @@ enum class InteractType : uint8 {
    ITEM UMETA(DisplayNmae = "Item"),
    NPC UMETA(DisplayName = "NPC")
 };
+
+
 이 코드를 통해 모든 상호작용 가능한 오브젝트들이 공통된 인터페이스를 공유하며, 타입에 따라 다른 동작을 수행할 수 있습니다.
-2. 상호작용 처리 로직
+### 2. 상호작용 처리 로직
 cppCopyvoid ASeori::Interact() {
     if (!canInteract) return;
     if (Talking) return;
