@@ -1,7 +1,7 @@
 # 🏮 미신전 (未信殿) 
 > 쥐구멍 마을의 수수께끼를 풀어가는 어드벤처 게임
 
-![게임 소개 이미지](./docs/assets/images/story/narrative_main_story.jpg)
+![게임 소개 이미지](docs/assets/images/story/narrative_main_story.jpg)
 
 ## 📖 목차
 1. [프로젝트 소개](#프로젝트-소개)
@@ -22,31 +22,27 @@
 - C++, Blueprint
 
 ## 💻 주요 시스템
-### [🤝 상호작용 시스템](./docs/systems/interaction.md)
+### [🤝 상호작용 시스템](docs/systems/interaction.md)
 - 통합 상호작용 시스템
 - NPC 대화
 - 아이템 상호작용
+![상호작용](docs/assets/images/technical/tech_game_flow.jpg)
 
-![상호작용](./docs/assets/images/technical/tech_game_flow.png)
-
-### [🎒 인벤토리 시스템](./docs/systems/inventory.md)
+### [🎒 인벤토리 시스템](docs/systems/inventory.md)
 - 아이템 관리
 - 데이터 테이블 연동
+![인벤토리](docs/assets/images/ui/ui_inventory.jpg)
 
-![인벤토리](./docs/assets/images/ui/ui_inventory.png)
-
-### [🤖 AI 시스템](./docs/systems/ai.md)
+### [🤖 AI 시스템](docs/systems/ai.md)
 - 도깨비 AI
 - 비헤이비어 트리
+![AI](docs/assets/images/characters/char_enemy_group.jpg)
 
-![AI](./docs/assets/images/characters/char_enemy_group.png)
-
-### [🎨 UI/UX](./docs/systems/ui.md)
+### [🎨 UI/UX](docs/systems/ui.md)
 - 메인 UI
 - 대화 시스템
 - 설정 메뉴
-
-![UI/UX](./docs/assets/images/ui/ui_npc_dialogue.png)
+![UI/UX](docs/assets/images/ui/ui_npc_dialogue.jpg)
 
 ## ⚙️ 기술 스택
 ### 언리얼 엔진 기능
