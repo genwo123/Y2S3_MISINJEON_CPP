@@ -2,6 +2,11 @@
 > 쥐구멍 마을의 수수께끼를 풀어가는 어드벤처 게임
 
 ![게임 소개 이미지](docs/assets/images/story/narrative_main_story.jpg)
+![학생의 책상](docs/assets/images/story/story_intro_student_desk.jpg)
+![서미역 입구](docs/assets/images/story/story_seomi_station_entrance.jpg)
+![추격 장면](docs/assets/images/story/story_subway_chase_scene.jpg)
+![야간 만남](docs/assets/images/story/story_night_encounter.jpg)
+![방 대화](docs/assets/images/story/story_room_conversation.jpg)
 
 ## 📖 목차
 1. [프로젝트 소개](#프로젝트-소개)
@@ -12,7 +17,6 @@
 6. [실행 방법](#실행-방법)
 
 ## 🎮 프로젝트 소개
-[간단한 게임 설명과 특징]
 
 
 
