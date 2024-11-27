@@ -16,7 +16,7 @@
 - 아이템 상호작용
 ![상호작용](docs/assets/images/technical/tech_game_flow.jpg)
 
-### [💻 게임 시스템 관리](docs/systems/gm2pc.md)
+### [💻 게임 시스템 관리](docs/systems/GM2PC.md)
 - 게임모드 기반 진행 관리
 - 플레이어 컨트롤러 입력 처리
 - 대화/독백 시스템
