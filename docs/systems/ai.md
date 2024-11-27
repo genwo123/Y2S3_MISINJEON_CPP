@@ -10,8 +10,8 @@
 언리얼 엔진의 비헤이비어 트리를 활용하여 도깨비(고블린) AI를 구현했습니다. 플레이어를 추적하고 공격하는 간단한 AI로, 기본적인 게임플레이 경험을 제공합니다.
 
 ### 주요 특징
-![AI 시스템](/docs/assets/images/ai/ai_bp_chat_task.JPG)
-*AI 시스템의 전체 구조도*
+![AI 시스템](/docs/assets/images/ai/ai_bp_goblin_base.JPG)
+*AI 시스템의 기본 구조도*
 
 ## AI 행동 패턴
 ### 1. 기본 행동 패턴
@@ -28,7 +28,7 @@
 *AI 비헤이비어 트리 구조*
 
 ### 3. 실제 게임플레이
-![도깨비 AI 추적](../videos/M_Chase_Goblin.mp4)
+![도깨비 AI 추적](/docs/assets/videos/M_Chase_Goblin.mp4)
 *실제 게임에서 플레이어를 추적하고 공격하는 AI 모습*
 
 ## 기술적 구현
