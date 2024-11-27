@@ -16,10 +16,16 @@
 - 아이템 상호작용
 ![상호작용](docs/assets/images/technical/tech_game_flow.jpg)
 
+### [💻 게임 시스템 관리](docs/systems/gm2pc.md)
+- 게임모드 기반 진행 관리
+- 플레이어 컨트롤러 입력 처리
+- 대화/독백 시스템
+![게임 시스템](/docs/assets/images/GM2PC/system_controller_dialogue_open.JPG)
+
 ### [🎒 인벤토리 시스템](docs/systems/inventory.md)
 - 아이템 관리
 - 데이터 테이블 연동
-![인벤토리](docs/assets/images/ui/ui_inventory.jpg)
+![인벤토리](/docs/assets/images/ui/ui_inventory_data_binding.JPG)
 
 ### [🤖 AI 시스템](docs/systems/ai.md)
 - 도깨비 AI
