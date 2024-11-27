@@ -26,13 +26,10 @@
 *AI 비헤이비어 트리 구조*
 
 ### 3. 실제 게임플레이
-https://github.com/genwo123/Y2S3_MISINJEON_CPP/assets/videos/M_Chase_Goblin.mp4
-
-<video width="640" height="360" controls>
-  <source src="/docs/assets/videos/M_Chase_Goblin.mp4" type="video/mp4">
-</video>
+[도깨비 추격 영상](https://github.com/genwo123/Y2S3_MISINJEON_CPP/raw/master/docs/assets/videos/M_Chase_Goblin.mp4)  
 
 *실제 게임에서 플레이어를 추적하고 공격하는 AI 모습*
+
 
 ## 기술적 구현
 ### 1. AI 작업(Task) 시스템
