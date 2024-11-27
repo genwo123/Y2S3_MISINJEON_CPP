@@ -1,69 +1,93 @@
+네, Common UI를 활용했다는 점을 명확히 하고, 관련 내용을 더 자세히 설명하도록 수정하겠습니다:
+
 # 🎨 UI/UX 시스템
 
-## 핵심 기능
-- COMMON UI 기반 스택 관리 시스템
-- Enhanced Input System 활용 입력 처리
-- 블루프린트 기반 UI 로직 구현
-- 게임/UI 로직 분리 아키텍처
+## 📝 목차
+- [시스템 개요](#시스템-개요)
+- [Common UI 스택 시스템](#common-ui-스택-시스템)
+- [UI 구조](#ui-구조)
+- [입력 시스템](#입력-시스템)
+- [기술적 구현](#기술적-구현)
 
-## UI 스택 구조
-### 메인 스택
-```
-WBP_MenuStack
-├── Main Menu
-├── Settings
-└── Load Game
+## 시스템 개요
+언리얼 엔진의 Common UI 프레임워크를 기반으로 한 스택 관리 시스템과 Enhanced Input System을 활용하여 게임의 UI/UX를 구현했습니다. Common UI의 장점을 살려 체계적인 UI 관리와 직관적인 사용자 경험을 제공합니다.
+
+![UI 시스템 구조도](/docs/assets/images/ui/ui_chat_system.JPG)
+*Common UI 기반 시스템 구조도*
+
+## Common UI 스택 시스템
+### 1. Common UI 기반 구조
+```cpp
+// Common UI 기반 스택 구조
+Common Game UI
+├── Root Layout
+├── Game Layer
+└── Menu Layer
+    ├── Main Stack
+    └── Overlay Stack
 ```
 
-### 게임 스택
-```
-WBP_PlayerStack  
-├── Inventory
-├── Map
-├── Chat
-└── System Menu
-```
+![스택 구조도](/docs/assets/images/ui/ui_title_screen.JPG)
+*Common UI 스택 구조도*
+
+### 2. 스택 관리 특징
+- Common UI의 Layer 기반 관리
+- Push/Pop 인터페이스 활용
+- 자동 포커스 처리
+- 입력 우선순위 관리
+
+## UI 구조
+### 1. 게임 레이어
+![게임 UI](/docs/assets/images/ui/ui_game_icons.JPG)
+*게임 내 UI 구성*
+
+- 상태 정보
+- 미니맵
+- 퀵슬롯
+- 인터랙션 UI
+
+### 2. 메뉴 레이어
+![메뉴 시스템](/docs/assets/images/ui/ui_play_inventory.JPG)
+*메뉴 시스템 구조*
+
+- 인벤토리
+- 캐릭터 정보
+- 설정 메뉴
+- 시스템 메뉴
 
 ## 입력 시스템
-### Enhanced Input Actions
-- IA_UI_Screen: UI 화면 전환
-- IA_UI_Cancel: 뒤로가기
-- IA_UI_Inventory: 인벤토리
-- IA_UI_Map: 지도
-- IA_UI_Chat: 대화
+### Enhanced Input 연동
+![입력 시스템](/docs/assets/images/ui/ui_input_mapping.JPG)
+*Enhanced Input 매핑 구조*
 
-[이미지: Enhanced Input 매핑 구조도]
+- UI 관련 입력 처리
+- 메뉴 전환 입력
+- 게임/UI 입력 분리
 
 ## 기술적 구현
-### Push 시스템
+### 1. Common UI 활용
 ```cpp
-// Widget Push 로직
-Push Widget
-└── Menu Base
-    └── Target Menu
-
-// Popup Push 로직  
-Push Popup
-└── Popup Stack
-    └── Target Popup
+// Common UI 기본 구조
+GameUI : CommonUI
+├── Push/Pop 인터페이스
+├── Layer 관리
+└── 포커스 시스템
 ```
 
-[이미지: 위젯 푸시 블루프린트]
+### 2. UI 이벤트 처리
+![UI 이벤트](/docs/assets/images/ui/ui_health_update.JPG)
+*UI 이벤트 처리 시스템*
 
-### UI 스택 관리
-- Last In First Out(LIFO) 구조
-- 스택별 독립적 관리
-- 통합 뒤로가기 처리
+- Common UI 이벤트 활용
+- 입력 우선순위 설정
+- 자동 네비게이션
 
-[이미지: 스택 관리 블루프린트]
+## 개선 계획
+- [ ] Common UI 기능 확장
+- [ ] 위젯 블루프린트 최적화
+- [ ] 레이어 구조 개선
+- [ ] 커스텀 네비게이션 구현
 
-## 개선 사항
-- C++ 마이그레이션 검토
-- 성능 최적화
-- 커스텀 기능 확장
+*Common UI의 기본 구조를 활용하면서 게임에 필요한 기능을 확장하여 구현했습니다.*
 
-[필요 이미지]
-1. Enhanced Input 설정
-2. Push 시스템 BP
-3. 스택 관리 BP
-4. UI 구조도
+이렇게 Common UI를 중심으로 한 시스템 설명으로 수정했습니다. 추가로 수정이 필요한 부분이 있다면 말씀해 주세요.
