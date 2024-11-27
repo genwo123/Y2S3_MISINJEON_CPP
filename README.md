@@ -1,8 +1,8 @@
 # 🏮 미신전 (未信殿) 
 > 쥐구멍 마을의 수수께끼를 풀어가는 어드벤처 게임
+
 ## 🎮 프로젝트 소개
 ![게임 소개 이미지](docs/assets/images/story/story_long.jpg)
-
 
 ## 🛠 개발 환경
 - Unreal Engine 5.x
@@ -32,6 +32,12 @@
 - 설정 메뉴
 ![UI/UX](docs/assets/images/ui/ui_npc_dialogue.jpg)
 
+### [💾 저장/불러오기 시스템](docs/systems/save_load.md)
+- 자동/수동 저장 기능
+- 다중 세이브 슬롯
+- 게임 데이터 관리
+![저장 시스템](/docs/assets/images/ui/ui_save_game_system.JPG)
+
 ## ⚙️ 기술 스택
 ### 언리얼 엔진 기능
 - C++ Core Systems
@@ -45,8 +51,6 @@
 
 ## 📅 개발 기간
 - 전체 개발 기간: 2024.09.02 ~ 20XX.10.28
-
-
 
 ## 💡 기술적 도전 과제
 자세한 내용은 [개발 과정 문서](./docs/development/challenges.md)를 참고해주세요.
